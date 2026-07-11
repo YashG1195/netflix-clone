@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Netflix Clone — Watch movies and TV shows online.">
+  <title>Netflix — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+</head>
+<body class="home-page">
+
+  <!-- ── Navbar ──────────────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <div class="netflix-logo">NETFLIX</div>
+      <ul class="nav-links">
+        <li><a href="/home" class="nav-link active">Home</a></li>
+        <li><a href="#" class="nav-link">TV Shows</a></li>
+        <li><a href="#" class="nav-link">Movies</a></li>
+        <li><a href="#" class="nav-link">New &amp; Popular</a></li>
+        <li><a href="#" class="nav-link">My List</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <button class="nav-icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="20" height="20">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+      <button class="nav-icon-btn" aria-label="Notifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="20" height="20">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        <span class="notif-dot"></span>
+      </button>
+      <div class="user-menu" id="userMenu">
+        <div class="user-avatar" id="userAvatar">
+          <%= user.fullname.charAt(0).toUpperCase() %>
+        </div>
+        <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" class="caret"><path d="M7 10l5 5 5-5z"/></svg>
+        <div class="dropdown" id="dropdown">
+          <div class="dropdown-user">
+            <div class="dropdown-avatar"><%= user.fullname.charAt(0).toUpperCase() %></div>
+            <div>
+              <p class="dropdown-name"><%= user.fullname %></p>
+              <p class="dropdown-email"><%= user.email %></p>
+            </div>
+          </div>
+          <hr class="dropdown-divider">
+          <a href="#" class="dropdown-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Account
+          </a>
+          <a href="#" class="dropdown-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41"/><path d="M4.93 4.93l1.41 1.41"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M19.07 19.07l-1.41-1.41"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
+            Settings
+          </a>
+          <hr class="dropdown-divider">
+          <a href="/logout" class="dropdown-item logout-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign out
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero Banner ──────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🔥 &nbsp;#1 in India Today</div>
+      <h1 class="hero-title">Stranger Things</h1>
+      <p class="hero-desc">
+        When a boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.
+      </p>
+      <div class="hero-meta">
+        <span class="rating-badge">TV-14</span>
+        <span>4 Seasons</span>
+        <span>Sci-Fi · Horror · Drama</span>
+      </div>
+      <div class="hero-actions">
+        <button class="hero-btn hero-play" id="playBtn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Play
+        </button>
+        <button class="hero-btn hero-info">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          More Info
+        </button>
+      </div>
+    </div>
+
+    <!-- Welcome toast -->
+    <div class="welcome-toast" id="welcomeToast">
+      👋 &nbsp;Welcome back, <strong><%= user.fullname.split(' ')[0] %>!</strong>
+    </div>
+  </section>
+
+  <!-- ── Content Rows ─────────────────────────────────────────── -->
+  <main class="content-area">
+
+    <!-- Continue Watching -->
+    <section class="content-row">
+      <h2 class="row-title">Continue Watching</h2>
+      <div class="cards-track" id="track1">
+        <% const continueWatching = [
+          { title: 'Stranger Things', genre: 'Sci-Fi', progress: 72, gradient: 'linear-gradient(135deg, #1a1a2e, #e50914)' },
+          { title: 'Money Heist', genre: 'Thriller', progress: 45, gradient: 'linear-gradient(135deg, #c0392b, #8e44ad)' },
+          { title: 'Dark', genre: 'Mystery', progress: 90, gradient: 'linear-gradient(135deg, #2c3e50, #4ca1af)' },
+          { title: 'Breaking Bad', genre: 'Drama', progress: 30, gradient: 'linear-gradient(135deg, #f39c12, #27ae60)' },
+          { title: 'Squid Game', genre: 'Thriller', progress: 60, gradient: 'linear-gradient(135deg, #00b894, #fd79a8)' },
+          { title: 'Ozark', genre: 'Crime', progress: 15, gradient: 'linear-gradient(135deg, #0f2027, #2c5364)' },
+        ]; %>
+        <% continueWatching.forEach(function(show) { %>
+          <div class="card" tabindex="0">
+            <div class="card-thumb" style="background: <%= show.gradient %>">
+              <div class="card-play-icon">▶</div>
+              <div class="card-progress-bar">
+                <div class="card-progress-fill" style="width: <%= show.progress %>%"></div>
+              </div>
+            </div>
+            <div class="card-info">
+              <p class="card-title"><%= show.title %></p>
+              <p class="card-genre"><%= show.genre %></p>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </section>
+
+    <!-- Trending Now -->
+    <section class="content-row">
+      <h2 class="row-title">Trending Now</h2>
+      <div class="cards-track" id="track2">
+        <% const trending = [
+          { title: 'The Crown', genre: 'Historical', gradient: 'linear-gradient(135deg, #373b44, #4286f4)' },
+          { title: 'Black Mirror', genre: 'Sci-Fi', gradient: 'linear-gradient(135deg, #232526, #414345)' },
+          { title: 'Mindhunter', genre: 'Crime', gradient: 'linear-gradient(135deg, #093028, #237a57)' },
+          { title: 'You', genre: 'Thriller', gradient: 'linear-gradient(135deg, #c94b4b, #4b134f)' },
+          { title: 'Peaky Blinders', genre: 'Drama', gradient: 'linear-gradient(135deg, #3d3d3d, #b8a49e)' },
+          { title: 'The Witcher', genre: 'Fantasy', gradient: 'linear-gradient(135deg, #1f4037, #99f2c8)' },
+          { title: 'Narcos', genre: 'Crime', gradient: 'linear-gradient(135deg, #544a7d, #ffd452)' },
+        ]; %>
+        <% trending.forEach(function(show, i) { %>
+          <div class="card trending-card" tabindex="0">
+            <div class="trending-number"><%= i + 1 %></div>
+            <div class="card-thumb" style="background: <%= show.gradient %>">
+              <div class="card-play-icon">▶</div>
+            </div>
+            <div class="card-info">
+              <p class="card-title"><%= show.title %></p>
+              <p class="card-genre"><%= show.genre %></p>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </section>
+
+    <!-- Popular on Netflix -->
+    <section class="content-row">
+      <h2 class="row-title">Popular on Netflix</h2>
+      <div class="cards-track" id="track3">
+        <% const popular = [
+          { title: 'Wednesday', genre: 'Comedy · Horror', gradient: 'linear-gradient(135deg, #0f0c29, #302b63)' },
+          { title: 'The Last of Us', genre: 'Action · Drama', gradient: 'linear-gradient(135deg, #5c3317, #8b4513)' },
+          { title: 'Succession', genre: 'Drama', gradient: 'linear-gradient(135deg, #243b55, #141e30)' },
+          { title: 'Emily in Paris', genre: 'Romance', gradient: 'linear-gradient(135deg, #e96c6c, #f7c5a0)' },
+          { title: 'The Bear', genre: 'Drama', gradient: 'linear-gradient(135deg, #403a3e, #be5869)' },
+          { title: 'Inventing Anna', genre: 'True Crime', gradient: 'linear-gradient(135deg, #834d9b, #d04ed6)' },
+        ]; %>
+        <% popular.forEach(function(show) { %>
+          <div class="card" tabindex="0">
+            <div class="card-thumb" style="background: <%= show.gradient %>">
+              <div class="card-play-icon">▶</div>
+            </div>
+            <div class="card-info">
+              <p class="card-title"><%= show.title %></p>
+              <p class="card-genre"><%= show.genre %></p>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="home-footer">
+    <p>Questions? Call <a href="#">1-800-NETFLIX</a></p>
+    <div class="footer-links">
+      <a href="#">FAQ</a><a href="#">Help Centre</a>
+      <a href="#">Terms of Use</a><a href="#">Privacy</a>
+      <a href="#">Cookie Preferences</a><a href="#">Corporate Information</a>
+    </div>
+    <p class="footer-copy">Netflix Clone &copy; 2024 &mdash; Built with Node.js + Express</p>
+  </footer>
+
+  <script src="/home.js"></script>
+</body>
+</html>

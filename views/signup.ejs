@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create a Netflix Clone account — Start watching movies and TV shows today.">
+  <title>Netflix — Sign Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="auth-page">
+
+  <div class="bg-overlay"></div>
+
+  <header class="auth-header">
+    <div class="netflix-logo" aria-label="Netflix Clone">NETFLIX</div>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-card" id="signupCard">
+      <h1>Sign Up</h1>
+
+      <% if (flash.error) { %>
+        <div class="alert alert-error" role="alert">
+          <span class="alert-icon">⚠️</span> <%= flash.error %>
+        </div>
+      <% } %>
+
+      <form class="auth-form" action="/register" method="POST" id="signupForm" novalidate>
+        <div class="input-group">
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            placeholder=" "
+            required
+            autocomplete="name"
+          >
+          <label for="fullname">Full Name</label>
+          <span class="input-border"></span>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="email"
+            id="signupEmail"
+            name="email"
+            placeholder=" "
+            required
+            autocomplete="email"
+          >
+          <label for="signupEmail">Email address</label>
+          <span class="input-border"></span>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="password"
+            id="signupPassword"
+            name="password"
+            placeholder=" "
+            required
+            minlength="6"
+            autocomplete="new-password"
+          >
+          <label for="signupPassword">Password (min. 6 characters)</label>
+          <span class="input-border"></span>
+          <button type="button" class="toggle-password" aria-label="Toggle password visibility" data-target="signupPassword">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Password strength bar -->
+        <div class="password-strength" id="strengthBar">
+          <div class="strength-track">
+            <div class="strength-fill" id="strengthFill"></div>
+          </div>
+          <span class="strength-label" id="strengthLabel">Password strength</span>
+        </div>
+
+        <button type="submit" class="btn-primary" id="signupBtn">
+          <span class="btn-text">Create Account</span>
+          <div class="btn-spinner"></div>
+        </button>
+      </form>
+
+      <p class="auth-footer">
+        Already have an account? <a href="/">Sign in.</a>
+      </p>
+
+      <p class="auth-disclaimer">
+        By signing up, you agree to our <a href="#">Terms of Use</a> and <a href="#">Privacy Statement</a>.
+      </p>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
